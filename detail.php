@@ -50,7 +50,13 @@ $result = $statement->fetch();
     <!-- Add more details as needed -->
     <a href="list.php">Go Back</a>
     <a href="/edit_todo">Edit</a>
-    <a href="/delete_todo">Delete</a>
+    <form action="delete.php" method="POST">
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="Id" value="<?= $result['id'] ?>">
+        <button type="submit" name="submit">
+            Delete
+        </button>
+    </form>
 </body>
 
 </html>
