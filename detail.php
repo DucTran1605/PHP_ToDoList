@@ -52,7 +52,7 @@ $result = $statement->fetch();
     <a href="/edit_todo">Edit</a>
     <form action="delete.php" method="POST">
         <input type="hidden" name="_method" value="delete">
-        <input type="hidden" name="Id" value="<?= $result['id'] ?>">
+        <input type="hidden" name="id" value="<?= $result['id'] ?>">
         <button type="submit" name="submit">
             Delete
         </button>
