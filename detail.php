@@ -17,6 +17,8 @@ $params = ['id' => $id];
 $statement->execute($params);
 
 $result = $statement->fetch();
+
+
 ?>
 
 <!DOCTYPE html>
@@ -46,10 +48,26 @@ $result = $statement->fetch();
         <p id="due_date"><?= $result['date_create'] ?></p>
     </div>
 
+    <div>
+        <label for="due_date">Status:</label>
+        <p id="due_date"><?= $result['status'] ? 'Doing' : 'Finish' ?></p>
+    </div>
+
     <!-- Add more details as needed -->
     <a href="list.php">Go Back</a>
 	<!--Edit form -->
     <a href="edit.php?id=<?=$result['id']?>">Edit</a>
+    <!--Check if finish-->
+    <?php if($result['status'] == 1) : ?>
+    <!--Finish form -->
+    <form action="finish.php" method="POST">
+        <input type="hidden" name="_method" value="finish">
+        <input type="hidden" name="id" value="<?= $result['id'] ?>">
+        <button type="submit" name="submit">
+            Mark as Finish
+        </button>
+    </form>
+    <?php endif ?>
 	<!--Delete form -->
     <form action="delete.php" method="POST">
         <input type="hidden" name="_method" value="delete">

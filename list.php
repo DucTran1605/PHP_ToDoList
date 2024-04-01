@@ -29,7 +29,8 @@ $results = $statement->fetchAll();
             <li>
                 <strong>Title:</strong><a href="detail.php?id=<?= $result['id'] ?>"><?= $result['title'] ?></a><br>
                 <strong>Description:</strong><?= $result['description'] ?><br>
-                <strong>Due Date:</strong><?= $result['date_create'] ?>
+                <strong>Due Date:</strong><?= $result['date_create'] ?><br>
+                <strong>Status:</strong><?= $result['status'] ? 'Doing' : 'Finish' ?>
             </li>
         <?php endforeach ?>
     </ul>
