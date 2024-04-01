@@ -1,8 +1,7 @@
 <?php
 require 'database.php';
 
-$id = $_GET['id'] ?? null;
-
+$id = isset($_GET['id']) ? $_GET['id'] : null;
 
 if (!$id) {
     header('Location: list.php');
@@ -49,7 +48,9 @@ $result = $statement->fetch();
 
     <!-- Add more details as needed -->
     <a href="list.php">Go Back</a>
-    <a href="/edit_todo">Edit</a>
+	<!--Edit form -->
+    <a href="edit.php?id=<?=$result['id']?>">Edit</a>
+	<!--Delete form -->
     <form action="delete.php" method="POST">
         <input type="hidden" name="_method" value="delete">
         <input type="hidden" name="id" value="<?= $result['id'] ?>">

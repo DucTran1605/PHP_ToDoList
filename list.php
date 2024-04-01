@@ -27,7 +27,7 @@ $results = $statement->fetchAll();
     <ul>
         <?php foreach ($results as $result) : ?>
             <li>
-                <strong>Title:</strong><a href="detail.php?id=<?= $result['Id'] ?>"><?= $result['title'] ?></a><br>
+                <strong>Title:</strong><a href="detail.php?id=<?= $result['id'] ?>"><?= $result['title'] ?></a><br>
                 <strong>Description:</strong><?= $result['description'] ?><br>
                 <strong>Due Date:</strong><?= $result['date_create'] ?>
             </li>
