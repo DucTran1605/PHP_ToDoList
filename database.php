@@ -1,7 +1,7 @@
 <?php  
 $host = 'localhost';  
 $port = 3306; // Replace with the appropriate port number  
-$dbName = 'to_do_list';  
+$dbName = 'thqisgdx_todolist';  
 $username = 'thqisgdx_todolist';  
 $password = '12345678';  
 $charset = 'utf8'; // Replace with the appropriate charset  
