@@ -32,7 +32,6 @@ if($isPutRequest){
 	$params = [
 		'title' => $title,
 		'description' => $description,
-        'status' => $status,
 		'id' => $id,
 	];
 	

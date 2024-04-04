@@ -18,7 +18,6 @@ try {
     // Set fetch mode to associative array  
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);  
   
-    echo 'Database connected';  
 } catch (PDOException $e) {  
     // If there is an error, catch it  
     echo 'Connection Failed: ' . $e->getMessage();  
