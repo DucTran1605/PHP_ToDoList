@@ -1,9 +1,9 @@
 <?php  
 $host = 'localhost';  
 $port = 3306; // Replace with the appropriate port number  
-$dbName = 'todolist';  
+$dbName = 'to_do_list';  
 $username = 'root';  
-$password = '12345678';  
+$password = '';  
 $charset = 'utf8'; // Replace with the appropriate charset  
 
 $dsn = "mysql:host=$host;port=$port;dbname=$dbName;charset=$charset"; // Specify the charset in the DSN  
@@ -22,4 +22,5 @@ try {
     // If there is an error, catch it  
     echo 'Connection Failed: ' . $e->getMessage();  
 }  
+
 ?>  

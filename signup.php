@@ -5,7 +5,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     $username = htmlspecialchars($_POST['username']);
     $password = htmlspecialchars($_POST['password']);
 
-    $query = "INSERT INTO account (username, password) VALUES (:username, :password);";
+    $query = "INSERT INTO `account` (`username`, `password`) VALUES (:username, :password);";
 
     $statement = $pdo->prepare($query);
 
