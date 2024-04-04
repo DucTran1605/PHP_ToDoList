@@ -1,14 +1,16 @@
 <?php
 require 'database.php';
 
-//Prepare a Select statement
-$statement = $pdo->prepare('Select * from list');
+session_start();
 
-//Execute the statment 
-$statement->execute();
+$account_id = $_SESSION['user_id'];  
+  
+$query = 'Select * from list where account_id = :id';
 
-//Fetch result 
-$results = $statement->fetchAll();
+// Prepare a SELECT statement to fetch tasks for the specified account_id  
+$statement = $pdo->prepare($query);
+$statement->execute($account_id);  
+$results = $statement->fetchAll();  
 
 ?>
 
