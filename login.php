@@ -1,25 +1,33 @@
 <?php
 require 'database.php';
-session_start();
+session_start(); 
+  
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {  
+    $username = $_POST['username'];  
+    $password = $_POST['password'];  
+  
+	$query = "SELECT * FROM account WHERE username = :username and password = :password";
 
-$username = $_POST['username'];
-$password = $_POST['password'];
+    $statement = $pdo->prepare($query);  
+    $params = [
+        'username' => $username,
+        'password' => $password
+    ];
 
-$query = "Select * from account where username = :username and password = :password";
-
-$statement = $pdo->prepare($query);
-
-$params = [
-	'username' => $username,
-	'password' => $password
-];
-
-$statement->execute($params);
-
-$user = $statement->fetch();
+	$statement->execute($params);  
+    $user = $statement->fetch();  
+  
+    if ($user && $password) {  
+        $_SESSION['user_id'] = $user['id']; // Store user id in the session  
+        header('Location: list.php');   
+        exit();  
+    } else {  
+        echo 'Invalid username or password';  
+    }  
+}  
+?>  
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
