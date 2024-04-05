@@ -1,25 +1,47 @@
 <?php
 require 'database.php';
 
+// Function to check if a username already exists in the database  
+function isUsernameTaken($username)
+{
+    global $pdo; // Assuming $pdo is your database connection object  
+
+    $query = 'SELECT COUNT(*) as count FROM account WHERE username = :username';
+    $statement = $pdo->prepare($query);
+    $statement->execute(['username' => $username]);
+
+    $result = $statement->fetch(PDO::FETCH_ASSOC);
+
+    return $result['count'] > 0;
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     $username = htmlspecialchars($_POST['username']);
     $password = htmlspecialchars($_POST['password']);
 
-    $query = "INSERT INTO `account` (`username`, `password`) VALUES (:username, :password);";
+    // Check if the username already exists  
+    if (isUsernameTaken($username)) {
+        // Redirect or show an error message indicating that the username is already taken  
+        echo "Username already exists. Please choose a different username.";
+    } else {
+        // Proceed with inserting the user into the database  
+        $query = "INSERT INTO `account` (`username`, `password`) VALUES (:username, :password);";
 
-    $statement = $pdo->prepare($query);
+        $statement = $pdo->prepare($query);
 
-    $params = [
-        'username' => $username,
-        'password' => $password
-    ];
+        $params = [
+            'username' => $username,
+            'password' => $password
+        ];
 
-    $statement->execute($params);
+        $statement->execute($params);
 
-    header('Location: login.php');
-    exit;
+        header('Location: login.php');
+        exit;
+    }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -38,11 +60,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 
         <label for="description">Password:</label><br>
         <input type="password" id="password" name="password" required><br><br>
-		
+
         <input type="submit" name="submit" value="Sign Up">
     </form>
 
-    <a type = "button" href = "login.php">Back to login</a>
+    <a type="button" href="login.php">Back to login</a>
 </body>
 
 </html>
