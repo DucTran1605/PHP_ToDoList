@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 
     $statement->execute($params);
 
-    header('Location: list.php');
+    header('Location: login.php');
     exit;
 }
 ?>
@@ -41,6 +41,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 		
         <input type="submit" name="submit" value="Sign Up">
     </form>
+
+    <a type = "button" href = "login.php">Back to login</a>
 </body>
 
 </html>

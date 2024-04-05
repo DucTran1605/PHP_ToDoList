@@ -3,14 +3,15 @@ require 'database.php';
 
 session_start();
 
-$account_id = $_SESSION['user_id'];  
-  
-$query = 'Select * from list where account_id = :id';
+$account_id = $_SESSION['user_id'];
 
-// Prepare a SELECT statement to fetch tasks for the specified account_id  
+$query = 'SELECT * FROM list WHERE account_id = :id';
+
+// Prepare a SELECT statement to fetch tasks for the specified account_id    
 $statement = $pdo->prepare($query);
-$statement->execute($account_id);  
-$results = $statement->fetchAll();  
+$statement->execute(['id' => $account_id]);  // Bind the parameter and execute the query  
+$results = $statement->fetchAll();
+
 
 ?>
 
@@ -153,6 +154,7 @@ $results = $statement->fetchAll();
                 <div class="col-md-12">
                     <div class="card card-white">
                         <div class="card-body">
+                            <a href="logout.php" class="btn btn-primary">Logout</a>
                             <a href="create.php" class="btn btn-primary">Create To Do</a>
                             <ul class="nav nav-pills todo-nav">
                                 <li role="presentation" class="nav-item all-task active"><a href="list.php" class="nav-link">All</a></li>
@@ -173,20 +175,20 @@ $results = $statement->fetchAll();
                                                 <input type="hidden" name="id" value="<?= $result['id'] ?>">
                                                 <button type="submit" name="submit" class="btn btn-danger mr-2">Delete</button>
                                             </form>
-                                            <?php if($result['status'] == 1) : ?>
-                                            <!-- Mark as Finish button -->
-                                            <form action="markFinish.php" method="POST">
-                                                <input type="hidden" name="_method" value="finish">
-                                                <input type="hidden" name="id" value="<?= $result['id'] ?>">
-                                                <button type="submit" name="submit" class="btn btn-info mr-2">Mark as Finish</button>
-                                            </form>
+                                            <?php if ($result['status'] == 1) : ?>
+                                                <!-- Mark as Finish button -->
+                                                <form action="markFinish.php" method="POST">
+                                                    <input type="hidden" name="_method" value="finish">
+                                                    <input type="hidden" name="id" value="<?= $result['id'] ?>">
+                                                    <button type="submit" name="submit" class="btn btn-info mr-2">Mark as Finish</button>
+                                                </form>
                                             <?php else : ?>
-                                            <!-- Mark as Doing button -->
-                                            <form action="markDoing.php" method="POST">
-                                                <input type="hidden" name="_method" value="doing">
-                                                <input type="hidden" name="id" value="<?= $result['id'] ?>">
-                                                <button type="submit" name="submit" class="btn btn-primary mr-2">Mark as Doing</button>
-                                            </form>
+                                                <!-- Mark as Doing button -->
+                                                <form action="markDoing.php" method="POST">
+                                                    <input type="hidden" name="_method" value="doing">
+                                                    <input type="hidden" name="id" value="<?= $result['id'] ?>">
+                                                    <button type="submit" name="submit" class="btn btn-primary mr-2">Mark as Doing</button>
+                                                </form>
                                             <?php endif ?>
                                         </div>
                                     </div>

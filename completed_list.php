@@ -1,13 +1,14 @@
 <?php
 require 'database.php';
 
+session_start();
+
+$account_id = $_SESSION['user_id'];
+
 //Prepare a Select statement
-$statement = $pdo->prepare('Select * from list where status = 0');
+$statement = $pdo->prepare('Select * from list where status = 0 and account_id = :account_id');
 
-//Execute the statment 
-$statement->execute();
-
-//Fetch result 
+$statement->execute(['account_id' => $account_id]);  // Bind the parameter and execute the query  
 $results = $statement->fetchAll();
 
 ?>
@@ -151,6 +152,7 @@ $results = $statement->fetchAll();
                 <div class="col-md-12">
                     <div class="card card-white">
                         <div class="card-body">
+                            <a href="logout.php" class="btn btn-primary">Logout</a>
                             <a href="create.php" class="btn btn-primary">Create To Do</a>
                             <ul class="nav nav-pills todo-nav">
                                 <li role="presentation" class="nav-item all-task active"><a href="list.php" class="nav-link">All</a></li>

@@ -1,17 +1,22 @@
 <?php
 require 'database.php';
 
+session_start();  
+  
+$account_id = $_SESSION['user_id'];
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
     $title = htmlspecialchars($_POST['title']);
     $description = htmlspecialchars($_POST['description']);
 
-    $query = "INSERT INTO list (title, status, account_Id, description, date_create) VALUES (:title, '1', '1', :description, CURDATE());";
+    $query = "INSERT INTO list (title, status, account_Id, description, date_create) VALUES (:title, '1', :account_id, :description, CURDATE());";
 
     $statement = $pdo->prepare($query);
 
     $params = [
         'title' => $title,
-        'description' => $description
+        'description' => $description,
+        'account_id' => $account_id
     ];
 
     $statement->execute($params);
