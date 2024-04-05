@@ -42,29 +42,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <link rel="stylesheet" href="https://www.phptutorial.net/app/css/style.css">
+    <title>Login</title>
 </head>
 
 <body>
-    <h1>Sign Up</h1>
-    <form method="POST">
-        <label for="title">Username:</label><br>
-        <input type="text" id="username" name="username" required><br><br>
-
-        <label for="description">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-
-        <input type="submit" name="submit" value="Sign Up">
-    </form>
-
-    <a type="button" href="login.php">Back to login</a>
+    <main>
+        <form method="POST">
+            <h1>Register</h1>
+            <div>
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" required>
+            </div>
+            <div>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <section>
+                <button type="submit" name="submit">Register</button>
+                <a href="signup.php">Register</a>
+            </section>
+        </form>
+    </main>
 </body>
 
 </html>

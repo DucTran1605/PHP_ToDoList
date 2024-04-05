@@ -26,27 +26,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Login</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.phptutorial.net/app/css/style.css">
+    <title>Login</title>
 </head>
-
 <body>
-	<h1>Login</h1>
-	<form action="login.php" method="POST">
-		<label for="title">Username:</label><br>
-		<input type="text" id="username" name="username" required><br><br>
-
-		<label for="description">Password:</label><br>
-		<input type="password" id="password" name="password" required><br><br>
-
-		<input type="submit" name="submit" value="Login">
-	</form>
-    <a type = "button" href = "signup.php">Sign Up</a>
+<main>
+    <form method="post">
+        <h1>Login</h1>
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <section>
+            <button type="submit" name="submit">Login</button>
+            <a href="signup.php">Register</a>
+        </section>
+    </form>
+</main>
 </body>
-
 </html>
