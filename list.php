@@ -148,7 +148,6 @@ $results = $statement->fetchAll();
 </head>
 
 <body>
-    <form action="process.php" method="POST">
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
@@ -199,7 +198,6 @@ $results = $statement->fetchAll();
                 </div>
             </div>
         </div>
-    </form>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>

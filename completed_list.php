@@ -146,49 +146,47 @@ $results = $statement->fetchAll();
 </head>
 
 <body>
-    <form action="process.php" method="POST">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card card-white">
-                        <div class="card-body">
-                            <a href="logout.php" class="btn btn-primary">Logout</a>
-                            <a href="create.php" class="btn btn-primary">Create To Do</a>
-                            <ul class="nav nav-pills todo-nav">
-                                <li role="presentation" class="nav-item all-task active"><a href="list.php" class="nav-link">All</a></li>
-                                <li role="presentation" class="nav-item active-task"><a href="doing_list.php" class="nav-link">Doing</a></li>
-                                <li role="presentation" class="nav-item completed-task"><a href="completed_list.php" class="nav-link">Completed</a></li>
-                            </ul>
-                            <?php foreach ($results as $result) : ?>
-                                <div class="todo-list">
-                                    <div class="todo-item">
-                                        <span>Title: <a href="edit.php?id=<?= $result['id'] ?>"><?= $result['title'] ?></a><br></span>
-                                        <span>Description: <?= $result['description'] ?><br></span>
-                                        <span>Create Date: <?= $result['date_create'] ?><br></span>
-                                        <span>Status: <?= $result['status'] ? 'Doing' : 'Finish' ?><br></span>
-                                        <div class="button-group d-flex">
-                                            <!-- Delete button -->
-                                            <form action="delete.php" method="POST">
-                                                <input type="hidden" name="_method" value="delete">
-                                                <input type="hidden" name="id" value="<?= $result['id'] ?>">
-                                                <button type="submit" name="submit" class="btn btn-danger mr-2">Delete</button>
-                                            </form>
-                                            <!-- Mark as Doing button -->
-                                            <form action="markDoing.php" method="POST">
-                                                <input type="hidden" name="_method" value="doing">
-                                                <input type="hidden" name="id" value="<?= $result['id'] ?>">
-                                                <button type="submit" name="submit" class="btn btn-primary mr-2">Mark as Doing</button>
-                                            </form>
-                                        </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-white">
+                    <div class="card-body">
+                        <a href="logout.php" class="btn btn-primary">Logout</a>
+                        <a href="create.php" class="btn btn-primary">Create To Do</a>
+                        <ul class="nav nav-pills todo-nav">
+                            <li role="presentation" class="nav-item all-task active"><a href="list.php" class="nav-link">All</a></li>
+                            <li role="presentation" class="nav-item active-task"><a href="doing_list.php" class="nav-link">Doing</a></li>
+                            <li role="presentation" class="nav-item completed-task"><a href="completed_list.php" class="nav-link">Completed</a></li>
+                        </ul>
+                        <?php foreach ($results as $result) : ?>
+                            <div class="todo-list">
+                                <div class="todo-item">
+                                    <span>Title: <a href="edit.php?id=<?= $result['id'] ?>"><?= $result['title'] ?></a><br></span>
+                                    <span>Description: <?= $result['description'] ?><br></span>
+                                    <span>Create Date: <?= $result['date_create'] ?><br></span>
+                                    <span>Status: <?= $result['status'] ? 'Doing' : 'Finish' ?><br></span>
+                                    <div class="button-group d-flex">
+                                        <!-- Delete button -->
+                                        <form action="delete.php" method="POST">
+                                            <input type="hidden" name="_method" value="delete">
+                                            <input type="hidden" name="id" value="<?= $result['id'] ?>">
+                                            <button type="submit" name="submit" class="btn btn-danger mr-2">Delete</button>
+                                        </form>
+                                        <!-- Mark as Doing button -->
+                                        <form action="markDoing.php" method="POST">
+                                            <input type="hidden" name="_method" value="doing">
+                                            <input type="hidden" name="id" value="<?= $result['id'] ?>">
+                                            <button type="submit" name="submit" class="btn btn-primary mr-2">Mark as Doing</button>
+                                        </form>
                                     </div>
                                 </div>
-                            <?php endforeach ?>
-                        </div>
+                            </div>
+                        <?php endforeach ?>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
+    </div>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
