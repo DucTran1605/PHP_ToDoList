@@ -66,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
             </div>
             <section>
                 <button type="submit" name="submit">Register</button>
-                <a href="signup.php">Register</a>
+                <a href="login.php">Back to login</a>
             </section>
         </form>
     </main>

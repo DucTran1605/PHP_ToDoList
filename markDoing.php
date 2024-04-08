@@ -6,7 +6,7 @@ $isDoingRequest = $_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['_method'] ==
 if ($isDoingRequest) {
     $id = $_POST['id'];
 
-    $query = 'UPDATE `to_do_list`.`list` SET `status` = 1 WHERE (`Id` = :id);';
+    $query = 'UPDATE `list` SET `status` = 1 WHERE (`Id` = :id);';
 
     $statement = $pdo->prepare($query);
 

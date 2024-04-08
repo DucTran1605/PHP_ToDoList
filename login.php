@@ -8,8 +8,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'];  
   
     // Prepare a SELECT statement to fetch user from the database based on the input username  
-    $statement = $pdo->prepare('SELECT * FROM account WHERE username = :username');  
-    $statement->execute(array(':username' => $username));  
+    $statement = $pdo->prepare('SELECT * FROM account WHERE username = :username and password = :password');  
+
+    $params = [
+        ':username' => $username,
+        ':password'=> $password
+    ];
+
+    $statement->execute($params);  
     $user = $statement->fetch();  
   
     if ($user && $password) {  
@@ -19,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();  
     } else {  
         // Authentication failed  
-        echo 'Invalid username or password';  
+        return $error = 'Invalid username or password';  
     }  
 }  
 ?>  
